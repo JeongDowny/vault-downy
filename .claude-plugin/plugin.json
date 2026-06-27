@@ -7,7 +7,7 @@
   "keywords": ["memory", "rag", "ollama", "local"],
   "commands": "./commands/",
   "hooks": {
-    "SessionStart": [{ "hooks": [{ "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/session-start.mjs\"", "timeout": 20 }] }],
+    "SessionStart": [{ "hooks": [{ "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/session-start.mjs\"", "timeout": 120 }] }],
     "UserPromptSubmit": [{ "hooks": [{ "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/inject.mjs\"", "timeout": 12 }] }],
     "Stop": [{ "hooks": [{ "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/capture.mjs\"", "timeout": 12 }] }],
     "SessionEnd": [{ "hooks": [{ "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/consolidate.mjs\"", "timeout": 120 }] }]
