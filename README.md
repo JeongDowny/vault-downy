@@ -113,7 +113,7 @@ Claude Code 설정에서 플러그인을 비활성화하면 됩니다. vault 데
 - 모든 처리가 **로컬**에서 이루어집니다 (Ollama 기반).
 - 노트는 `~/vault-downyu/` 에 저장되며, 이 디렉터리를 private repo로 관리하길 권장합니다.
 - secret 스캔이 활성화되어 있어, API 키·주민번호·JWT 등이 감지되면 자동으로 redact 후 저장합니다.
-- 캡처된 후보 파일(`~/.vault-downyu/.derived/candidates.jsonl`)은 권한 600(소유자만 읽기)으로 생성됩니다.
+- 캡처된 후보 파일(`~/vault-downyu/.derived/candidates.jsonl`)은 권한 600(소유자만 읽기)으로 생성됩니다.
 
 ---
 
