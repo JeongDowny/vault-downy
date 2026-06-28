@@ -46,3 +46,28 @@ test("formatInjection — verbatim 없으면 ↳ 없음", () => {
   const t = formatInjection(results);
   assert.ok(!t.includes("↳"), "verbatim 없으면 ↳ 미포함");
 });
+
+test("superseded_by 있는 노트 제외", () => {
+  const idx = {
+    dim: 2, rows: new Float32Array([1, 0, 1, 0]),
+    meta: [
+      { id: "old", scope: {}, created: "2026-01-01", origin: "user-originated", gist: "old", tags: [], superseded_by: "new" },
+      { id: "new", scope: {}, created: "2026-06-01", origin: "user-originated", gist: "new", tags: [], superseded_by: null },
+    ]
+  };
+  const out = rank([1, 0], idx, null, 5);
+  assert.ok(out.every((m) => m.id !== "old"), "superseded 노트는 제외");
+  assert.ok(out.some((m) => m.id === "new"));
+});
+
+test("created 최신이 동점에서 우선", () => {
+  const idx = {
+    dim: 2, rows: new Float32Array([1, 0, 1, 0]),
+    meta: [
+      { id: "older", scope: {}, created: "2026-01-01", origin: "user-originated", gist: "g", tags: [] },
+      { id: "newer", scope: {}, created: "2026-06-01", origin: "user-originated", gist: "g", tags: [] },
+    ]
+  };
+  const out = rank([1, 0], idx, null, 2);
+  assert.equal(out[0].id, "newer", "최신이 앞에 와야 함");
+});
