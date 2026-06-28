@@ -3,6 +3,7 @@
 import { embed as _embed } from "../lib/embed.mjs";
 import { loadIndex } from "../lib/index.mjs";
 import { buildQuery, rank, formatInjection } from "../lib/retrieve.mjs";
+import { logRetrieval } from "../lib/metrics.mjs";
 
 function wrap(text) {
   const o = { hookSpecificOutput: { hookEventName: "UserPromptSubmit" } };
@@ -20,7 +21,13 @@ export async function run(stdinText, embedFn = _embed) {
   catch { return wrap("[memory: DEGRADED — embedder down]"); }
   try {
     const idx = loadIndex();
-    return wrap(formatInjection(rank(qv, idx, ev.cwd)));
+    const top = rank(qv, idx, ev.cwd);
+    logRetrieval({
+      corpus_size: idx.meta.length,
+      candidates: top.slice(0, 5).map((m) => ({ id: m.id, score: m.score })),
+      injected_ids: top.map((m) => m.id),
+    });
+    return wrap(formatInjection(top));
   } catch { return wrap("[memory: DEGRADED — index error]"); }
 }
 
