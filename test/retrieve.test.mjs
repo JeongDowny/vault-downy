@@ -33,3 +33,16 @@ test("origin 가중 — model-proposed-approved가 user-originated보다 낮은 
   assert.equal(out[0].id, "u");
   assert.ok(out[0].score > out[1].score);
 });
+
+test("formatInjection — verbatim 발췌 포함", () => {
+  const results = [{ id: "a", gist: "헥토 결정", origin: "user-originated", created: "2026-06-08", score: 0.9, verbatim: "헥토로 결제 진행하기로 했음" }];
+  const t = formatInjection(results);
+  assert.ok(t.includes("↳"), "verbatim 발췌 포함");
+  assert.ok(t.includes("헥토로 결제"), "verbatim 내용 포함");
+});
+
+test("formatInjection — verbatim 없으면 ↳ 없음", () => {
+  const results = [{ id: "b", gist: "결정사항", origin: "user-originated", created: "2026-06-08", score: 0.8, verbatim: "" }];
+  const t = formatInjection(results);
+  assert.ok(!t.includes("↳"), "verbatim 없으면 ↳ 미포함");
+});
