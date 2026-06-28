@@ -20,3 +20,16 @@ test("formatInjection 빈/계약", () => {
   const t = formatInjection([{ id: "a", gist: "삼성 SHORT", origin: "user-originated", created: "2026-06-08", score: 0.9 }]);
   assert.ok(t.includes("과거") && t.includes("무시해도") && t.includes("삼성 SHORT") && t.includes("2026-06-08"));
 });
+
+test("origin 가중 — model-proposed-approved가 user-originated보다 낮은 score", () => {
+  const idx = {
+    dim: 2, rows: new Float32Array([1, 0, 1, 0]),
+    meta: [
+      { id: "u", scope: {}, created: "2026-01-01", origin: "user-originated", gist: "g1", tags: [] },
+      { id: "m", scope: {}, created: "2026-01-01", origin: "model-proposed-approved", gist: "g2", tags: [] },
+    ]
+  };
+  const out = rank([1, 0], idx, null, 2);
+  assert.equal(out[0].id, "u");
+  assert.ok(out[0].score > out[1].score);
+});
