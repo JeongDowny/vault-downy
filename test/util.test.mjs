@@ -20,7 +20,7 @@ test("secrets", () => {
 
 test("candidates append/load/removeFirst", async () => {
   const d = mkdtempSync(join(tmpdir(), "vd-"));
-  process.env.VAULT_DOWNYU_VAULT = d;
+  process.env.VAULT_DOWNY_VAULT = d;
   const c = await import("../lib/candidates.mjs?" + Math.random());
   c.append({ text: "a" }); c.append({ text: "b" }); c.append({ text: "c" });
   assert.equal(c.loadAll().length, 3);

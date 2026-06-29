@@ -1,9 +1,9 @@
 {
-  "name": "vault-downyu",
+  "name": "vault-downy",
   "owner": { "name": "jeongdaun" },
   "plugins": [
     {
-      "name": "vault-downyu",
+      "name": "vault-downy",
       "source": "./",
       "description": "개인 장기 경험 메모리 — Claude Code 세션의 결정·교훈을 자동 캡처하고 새 작업에 유사 과거를 자동 인출. 로컬 Ollama 기반, 의존성 0."
     }

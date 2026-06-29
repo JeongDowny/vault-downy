@@ -6,7 +6,7 @@ import { join } from "node:path";
 
 async function fresh() {
   const d = mkdtempSync(join(tmpdir(), "vd-"));
-  process.env.VAULT_DOWNYU_VAULT = d;
+  process.env.VAULT_DOWNY_VAULT = d;
   mkdirSync(join(d, "notes"), { recursive: true });
   return { d, c: await import("../lib/consolidate.mjs?" + Math.random()),
            cand: await import("../lib/candidates.mjs?" + Math.random()) };

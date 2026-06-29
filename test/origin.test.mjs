@@ -53,7 +53,7 @@ test("lastTurnPair — assistant 없음", async () => {
 // capture originHint 저장 테스트
 test("capture — originHint 저장", async () => {
   const d = mkdtempSync(join(tmpdir(), "vd-cap-"));
-  process.env.VAULT_DOWNYU_VAULT = d;
+  process.env.VAULT_DOWNY_VAULT = d;
   const tp = join(d, "t.jsonl");
   // user 발화는 assistant 제안과 무관 → user-originated
   writeFileSync(tp, [
@@ -71,7 +71,7 @@ test("capture — originHint 저장", async () => {
 // consolidate 배치 origin 규칙 테스트
 test("consolidate — user-originated 하나라도 있으면 user-originated", async () => {
   const d = mkdtempSync(join(tmpdir(), "vd-con-"));
-  process.env.VAULT_DOWNYU_VAULT = d;
+  process.env.VAULT_DOWNY_VAULT = d;
   mkdirSync(join(d, "notes"), { recursive: true });
   const cand = await import("../lib/candidates.mjs?" + Math.random());
   const c = await import("../lib/consolidate.mjs?" + Math.random());
@@ -89,7 +89,7 @@ test("consolidate — user-originated 하나라도 있으면 user-originated", a
 
 test("consolidate — 전부 model-proposed-approved면 approved", async () => {
   const d = mkdtempSync(join(tmpdir(), "vd-con2-"));
-  process.env.VAULT_DOWNYU_VAULT = d;
+  process.env.VAULT_DOWNY_VAULT = d;
   mkdirSync(join(d, "notes"), { recursive: true });
   const cand = await import("../lib/candidates.mjs?" + Math.random());
   const c = await import("../lib/consolidate.mjs?" + Math.random());

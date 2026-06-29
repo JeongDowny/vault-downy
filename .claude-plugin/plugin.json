@@ -1,5 +1,5 @@
 {
-  "name": "vault-downyu",
+  "name": "vault-downy",
   "version": "0.1.0",
   "description": "개인 장기 경험 메모리 — Claude Code 세션의 결정·교훈을 자동 캡처하고 새 작업에 유사 과거를 자동 인출. 로컬 Ollama 기반.",
   "author": { "name": "jeongdaun" },

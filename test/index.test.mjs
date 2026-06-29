@@ -6,7 +6,7 @@ import { join } from "node:path";
 
 async function fresh() {
   const d = mkdtempSync(join(tmpdir(), "vd-"));
-  process.env.VAULT_DOWNYU_VAULT = d;
+  process.env.VAULT_DOWNY_VAULT = d;
   return await import("../lib/index.mjs?" + Math.random());
 }
 

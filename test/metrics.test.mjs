@@ -6,7 +6,7 @@ import { join } from "node:path";
 
 test("logRetrieval — jsonl 파일 append, 디렉터리 자동생성", async () => {
   const d = mkdtempSync(join(tmpdir(), "vd-met-"));
-  process.env.VAULT_DOWNYU_VAULT = d;
+  process.env.VAULT_DOWNY_VAULT = d;
   const { logRetrieval } = await import("../lib/metrics.mjs?" + Math.random());
   logRetrieval({ corpus_size: 10, candidates: [{ id: "a", score: 0.9 }], injected_ids: ["a"] });
   const p = join(d, ".derived", "retrieval.jsonl");
@@ -18,7 +18,7 @@ test("logRetrieval — jsonl 파일 append, 디렉터리 자동생성", async ()
 
 test("logCapture — jsonl 파일 append", async () => {
   const d = mkdtempSync(join(tmpdir(), "vd-met2-"));
-  process.env.VAULT_DOWNYU_VAULT = d;
+  process.env.VAULT_DOWNY_VAULT = d;
   const { logCapture } = await import("../lib/metrics.mjs?" + Math.random());
   logCapture({ session: "s1", written: ["id1"], dedup_skipped: 0 });
   const p = join(d, ".derived", "capture.jsonl");
@@ -29,14 +29,14 @@ test("logCapture — jsonl 파일 append", async () => {
 
 test("logRetrieval — 예외 안 남 (fail-silent)", async () => {
   const d = mkdtempSync(join(tmpdir(), "vd-met3-"));
-  process.env.VAULT_DOWNYU_VAULT = d;
+  process.env.VAULT_DOWNY_VAULT = d;
   const { logRetrieval } = await import("../lib/metrics.mjs?" + Math.random());
   assert.doesNotThrow(() => logRetrieval({ corpus_size: 0 }));
 });
 
 test("consolidate — content_hash frontmatter 포함", async () => {
   const d = mkdtempSync(join(tmpdir(), "vd-ch-"));
-  process.env.VAULT_DOWNYU_VAULT = d;
+  process.env.VAULT_DOWNY_VAULT = d;
   mkdirSync(join(d, "notes"), { recursive: true });
   const cand = await import("../lib/candidates.mjs?" + Math.random());
   const c = await import("../lib/consolidate.mjs?" + Math.random());

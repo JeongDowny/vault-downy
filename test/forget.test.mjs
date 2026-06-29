@@ -7,7 +7,7 @@ import { join } from "node:path";
 // review가 최근 노트만 반환하는지 테스트 (직접 함수 테스트)
 test("review — 최근 N일 노트만 필터", async () => {
   const d = mkdtempSync(join(tmpdir(), "vd-rev-"));
-  process.env.VAULT_DOWNYU_VAULT = d;
+  process.env.VAULT_DOWNY_VAULT = d;
   mkdirSync(join(d, "notes"), { recursive: true });
   const today = new Date().toISOString().slice(0, 10);
   const old = "2020-01-01T00:00:00Z";
@@ -30,7 +30,7 @@ test("review — 최근 N일 노트만 필터", async () => {
 
 test("forget — 노트를 .trash로 이동, notes에서 사라짐", async () => {
   const d = mkdtempSync(join(tmpdir(), "vd-fgt-"));
-  process.env.VAULT_DOWNYU_VAULT = d;
+  process.env.VAULT_DOWNY_VAULT = d;
   mkdirSync(join(d, "notes"), { recursive: true });
   writeFileSync(join(d, "notes", "auto-test-forget.md"),
     `---\nid: auto-test-forget\ncreated: 2026-06-01T00:00:00Z\norigin: user-originated\ntags: []\n---\n\n## gist\n삭제테스트\n`);
@@ -47,7 +47,7 @@ test("forget — 노트를 .trash로 이동, notes에서 사라짐", async () =>
 
 test("session-start — 노트수 메시지 포함", async () => {
   const d = mkdtempSync(join(tmpdir(), "vd-ss-"));
-  process.env.VAULT_DOWNYU_VAULT = d;
+  process.env.VAULT_DOWNY_VAULT = d;
   mkdirSync(join(d, "notes"), { recursive: true });
   writeFileSync(join(d, "notes", "auto-1.md"),
     `---\nid: auto-1\ncreated: 2026-06-01T00:00:00Z\norigin: user-originated\ntags: []\n---\n\n## gist\n노트1\n`);

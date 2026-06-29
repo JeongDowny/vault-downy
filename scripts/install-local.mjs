@@ -7,7 +7,7 @@ import { homedir } from "node:os";
 import { join, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const MARKER = "# vault-downyu";
+const MARKER = "# vault-downy";
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const SETTINGS = join(homedir(), ".claude", "settings.json");
 const HOOKS = {

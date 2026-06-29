@@ -6,7 +6,7 @@ import { join } from "node:path";
 
 test("capture 신호 있으면 적재, 잡담 스킵", async () => {
   const d = mkdtempSync(join(tmpdir(), "vd-"));
-  process.env.VAULT_DOWNYU_VAULT = d;
+  process.env.VAULT_DOWNY_VAULT = d;
   const tp = join(d, "t.jsonl");
   writeFileSync(tp, JSON.stringify({ type: "user", message: { role: "user", content: "앞으로 결제는 헥토로 결정" } }));
   const cap = await import("../hooks/capture.mjs?" + Math.random());
